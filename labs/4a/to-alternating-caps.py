@@ -1,20 +1,28 @@
 #!/usr/bin/env python3
 
 s = input()
-l = ""
+flat = ""
 i = 0
-prev = True
 while i < len(s):
-   cN = ord(s[i])
-   isLower = cN <= 122 and cN >= 97
-   isUpper = cN <= 90 and cN >= 65
-   print(prev)
-   if isUpper and prev:
-      l += chr(cN + 32)
-      prev = False
-   if isLower and not prev:
-      l += chr(cN - 32)
-      prev = True
-   i+=1
-print(l)
-print(ord("Z"))
+   c = s[i]
+   isLower = c <= "z" and c >= "a"
+   isUpper = c <= "Z" and c >= "A"
+   if isUpper:
+      flat += chr(ord(c) + 32)
+   else:
+      flat += s[i]
+   i += 1
+k = ""
+i = 0
+j = 0
+while i < len(flat):
+   c = flat[i]
+   isChar = c <= "z" and c >= "a"
+   if j % 2 and c != " " and isChar:
+      k += chr(ord(c) - 32)
+   else:
+      k += c
+   if ord(c) != 32 and isChar:
+      j += 1
+   i += 1
+print(k)
